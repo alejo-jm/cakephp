@@ -782,12 +782,12 @@ class App {
 	protected static function _map($file, $name, $plugin = null) {
 		$key = $name;
 		if ($plugin) {
-			$key = 'plugin.' . $name;
+			$key = $plugin. '.' . $name;
 		}
 		if ($plugin && empty(self::$_map[$name])) {
 			self::$_map[$key] = $file;
 		}
-		if (!$plugin && empty(self::$_map['plugin.' . $name])) {
+		if (!$plugin && empty(self::$_map[$plugin . '.' . $name])) {
 			self::$_map[$key] = $file;
 		}
 		if (!self::$bootstrapping) {
@@ -805,7 +805,7 @@ class App {
 	protected static function _mapped($name, $plugin = null) {
 		$key = $name;
 		if ($plugin) {
-			$key = 'plugin.' . $name;
+			$key = $plugin. '.' . $name;
 		}
 		return isset(self::$_map[$key]) ? self::$_map[$key] : false;
 	}
